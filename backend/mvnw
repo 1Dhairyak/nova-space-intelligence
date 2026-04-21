@@ -1,0 +1,40 @@
+#!/bin/sh
+# Maven Wrapper Script
+# Generated for nova-space-backend (Spring Boot 3.2.4)
+
+if [ -z "$JAVA_HOME" ] ; then
+  JAVACMD=`which java`
+  if [ -z "$JAVACMD" ] ; then
+    echo "Error: JAVA_HOME is not set and no 'java' command could be found in your PATH." >&2
+    echo "Please set the JAVA_HOME variable in your environment to match the location of your Java installation." >&2
+    exit 1
+  fi
+else
+  JAVACMD="$JAVA_HOME/bin/java"
+  if [ ! -x "$JAVACMD" ] ; then
+    echo "Error: JAVA_HOME is set to an invalid directory: $JAVA_HOME" >&2
+    exit 1
+  fi
+fi
+
+WRAPPER_JAR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)/.mvn/wrapper/maven-wrapper.jar"
+WRAPPER_LAUNCHER=org.apache.maven.wrapper.MavenWrapperMain
+
+DOWNLOAD_URL="https://repo.maven.apache.org/maven2/org/apache/maven/wrapper/maven-wrapper/3.2.0/maven-wrapper-3.2.0.jar"
+
+if [ ! -e "$WRAPPER_JAR" ]; then
+    if command -v wget > /dev/null; then
+        wget -q -O "$WRAPPER_JAR" "$DOWNLOAD_URL" || { echo "wget failed, trying curl"; }
+    fi
+    if [ ! -e "$WRAPPER_JAR" ]; then
+        if command -v curl > /dev/null; then
+            curl -s -o "$WRAPPER_JAR" "$DOWNLOAD_URL" || { echo "Error: could not download maven-wrapper.jar" >&2; exit 1; }
+        fi
+    fi
+fi
+
+exec "$JAVACMD" \
+  -classpath "$WRAPPER_JAR" \
+  "-Dmaven.multiModuleProjectDirectory=${MAVEN_PROJECTBASEDIR}" \
+  $MAVEN_OPTS \
+  $WRAPPER_LAUNCHER $MAVEN_CONFIG "$@"

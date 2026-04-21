@@ -1,0 +1,62 @@
+server:
+  port: 8080
+spring:
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    deserialization:
+      fail-on-unknown-properties: false
+  datasource:
+    url: jdbc:mysql://localhost:3306/nova_space?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+      timeout: 2000ms
+  cache:
+    type: redis
+    redis:
+      time-to-live: 3600000
+jwt:
+  secret: ${JWT_SECRET:nova-super-secret-key-change-in-production-min-256-bits}
+  expiration: 86400000
+  refresh-expiration: 604800000
+nasa:
+  api-key: ${NASA_API_KEY:DEMO_KEY}
+  base-url: https://api.nasa.gov
+spacex:
+  base-url: https://api.spacexdata.com/v4
+isro:
+  base-url: https://isro.vercel.app/api
+the-space-devs:
+  base-url: https://ll.thespacedevs.com/2.2.0
+  api-key: ${SPACE_DEVS_API_KEY:}
+open-notify:
+  base-url: http://api.open-notify.org
+anthropic:
+  api-key: ${ANTHROPIC_API_KEY:}
+  model: claude-sonnet-4-20250514
+  base-url: https://api.anthropic.com/v1
+scheduler:
+  iss-interval: 5000
+  space-weather-interval: 300000
+  launch-interval: 300000
+  neo-interval: 3600000
+  apod-interval: 43200000
+cors:
+  allowed-origins: ${CORS_ORIGINS:http://localhost:5173,http://localhost:3000}
+logging:
+  level:
+    com.nova: DEBUG
+    org.springframework.web.socket: INFO
