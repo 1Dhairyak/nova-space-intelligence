@@ -94,10 +94,10 @@ Frontend runs at http://localhost:5173 and proxies:
 | NASA            | Yes         | https://api.nasa.gov                       | 1000 req/hr      |
 | Anthropic       | Yes         | https://console.anthropic.com              | Pay per token    |
 | SpaceX          | No          | Public API — no key needed                 | Unlimited        |
-| ISRO Community  | No          | https://isro.vercel.app — no key needed   | Unlimited        |
+| ISRO Community  | No          | https://isro.vercel.app — no key needed    | Unlimited        |
 | The Space Devs  | Optional    | https://thespacedevs.com/api               | 15 req/hr free   |
-| Open Notify ISS | No          | http://api.open-notify.org — no key       | Unlimited        |
-| NOAA Kp Index   | No          | https://services.swpc.noaa.gov — no key  | Unlimited        |
+| Open Notify ISS | No          | http://api.open-notify.org — no key        | Unlimited        |
+| NOAA Kp Index   | No          | https://services.swpc.noaa.gov — no key    | Unlimited        |
 
 ---
 
@@ -111,14 +111,6 @@ Frontend runs at http://localhost:5173 and proxies:
 | `/topic/weather`            | SpaceWeather         | Every 5min |
 | `/topic/brief`              | SpaceBriefCache      | Every 5min |
 | `/user/queue/nova`          | Nova AI response     | On demand  |
-
-## Send to Backend
-
-| Destination       | Body                                              |
-|-------------------|---------------------------------------------------|
-| `/app/nova/chat`  | `{ "message": "...", "conversationId": "uuid" }` |
-
----
 
 ## REST Endpoints
 
